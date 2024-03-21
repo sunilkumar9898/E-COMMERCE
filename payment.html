@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazone</title>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+nav {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+    background-color: rgba(8, 96, 134, 0.814);
+}
+.logo {
+    font-size: 35px;
+    color: white;
+}
+.logo span:nth-child(1) {
+    color: rgb(238, 196, 9);
+}
+
+.Search {
+    width: 45%;
+}
+.Search input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: none;
+}
+
+.cart{
+    display: flex;
+    gap: 40px;
+    font-size: 20px;
+    cursor: pointer;
+
+}
+.cart a{
+    color: rgb(16, 15, 15);
+}
+
+
+#container{
+    width: 80%;
+    margin: 50px auto;
+    box-shadow: 0px 0px 2px grey;
+    padding: 20px;
+}
+.main_div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    gap: 40px;
+}
+
+.sub_section_div{
+    display: flex;
+    width: 40%;
+    margin-bottom:10px ;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    padding: 10px;
+    gap: 40px;
+    justify-content: space-evenly;
+}
+.sub_section_div img{
+    width: 10%;
+    aspect-ratio: 2/2;
+}
+
+.sub_section_div button{
+    padding: 5px 10px;
+    width: 110px;
+}
+
+
+    </style>
+</head>
+<body>
+        <nav>
+            <div class="logo">
+                <span>e</span>
+                <span>S</span>
+                <span>H</span>
+                <span>O</span>
+                <span>P</span>
+            </div>
+
+            <div class="Search">
+                <input type="text" placeholder="Search" />
+            </div>
+
+            <div class="cart">
+                <a href="#"><i class="fa-solid fa-user"></i></a>
+                <a href="./cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </nav>
+
+
+        <div id="container">
+            <a href="#"> Continue Shoping </a>
+        </div>
+
+
+
+
+        <script>
+            let container = document.getElementById("container")
+            let arr = JSON.parse(localStorage.getItem("cartData")) || []
+            console.log(arr,"120");
+
+        function displayData(data){
+            data.map((item)=>{
+                let div = document.createElement("div")
+                div.classList.add("main_div")
+                let section_div1 = document.createElement("div")
+
+                let section_div2 = document.createElement("div")
+
+                let sub_section_div = document.createElement("div")
+                sub_section_div.classList.add("sub_section_div")
+                let img = document.createElement("img")
+                img.src = item.image
+
+                let desc = document.createElement("p")
+                desc.innerText = item.description.split(" ").slice(0,7).join(" ")+ ".....";
+
+                    let qunatity = document.createElement("p")
+                qunatity.innerText = ` Qty : ${item.quantity}`;
+
+                        let total = document.createElement("p")
+                total.innerText ="total";
+
+                        let btn = document.createElement("button")
+                btn.innerText = "edit Cart";
+
+                sub_section_div.append(img,desc,qunatity,btn)
+                section_div1.append(sub_section_div)
+                section_div2.append(total)
+                div.append(section_div1,section_div2)
+                container.append(div)
+
+
+            })
+
+        }
+
+        displayData(arr)
+        </script>
+</body>
+</html>

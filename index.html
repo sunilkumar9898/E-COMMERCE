@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Amazone</title>
+        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer" />
+    </head>
+    <body>
+        <nav>
+            <div class="logo">
+                <span>e</span>
+                <span>S</span>
+                <span>H</span>
+                <span>O</span>
+                <span>P</span>
+            </div>
+            <div class="filter_sort">
+                <select name="" id="filter">
+                    <option value="">---Filter---</option>
+                    <option value="">---Filter---</option>
+                    <option value="">---Filter---</option>
+                    <option value="">---Filter---</option>
+                </select>
+                <select name="" id="sort">
+                    <option value="">---sort---</option>
+                    <option value="">---sort---</option>
+                    <option value="">---sort---</option>
+                    <option value="">---sort---</option>
+                </select>
+            </div>
+            <div class="Search">
+                <input type="text" placeholder="Search" />
+            </div>
+
+            <div class="cart">
+                <a href="#"><i class="fa-solid fa-user"></i></a>
+                <a href="./cart.html"
+                    ><i class="fa-solid fa-cart-shopping"></i
+                    ><span id="cart"> : 0</span></a
+                >
+            </div>
+        </nav>
+
+        <div id="container"></div>
+    </body>
+    <script>
+        let arr = JSON.parse(localStorage.getItem("cartData")) || [];
+
+        async function getData() {
+            try {
+                let res = await fetch("https://fakestoreapi.com/products");
+                let data = await res.json();
+                showData(data)
+                console.log(data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getData();
+        let container = document.getElementById("container");
+
+        function showData(data) {
+            data.map((item) => {
+                let div = document.createElement("div");
+                let img = document.createElement("img");
+                img.src = item.image;
+                let category = document.createElement("p");
+                category.innerText = item.category;
+
+                let desc = document.createElement("p");
+                desc.innerText =
+                    item.description.split(" ").slice(0, 7).join(" ") +
+                    ".......";
+
+                let price = document.createElement("h3");
+                price.innerText = ` $ : ${item.price}`;
+
+                let btn = document.createElement("button");
+                btn.innerText = "Add To Cart";
+                btn.addEventListener("click", () => {
+                    addToCart(item);
+                    updatedCartQunt();
+                });
+
+                div.append(img, category, desc, price, btn);
+                container.append(div);
+            });
+        }
+
+        // <---------Add to cart-------->
+        function addToCart(value) {
+            let arr = JSON.parse(localStorage.getItem("cartData")) || [];
+            arr.push(value);
+            localStorage.setItem("cartData", JSON.stringify(arr));
+            alert("Added to Cart");
+        }
+
+        function updatedCartQunt() {
+            arr = JSON.parse(localStorage.getItem("cartData")) || [];
+            let cart = document.getElementById("cart");
+            cart.style.color = "white";
+            cart.style.marginLeft = "5px";
+            cart.style.fontSize = "25px";
+            cart.innerText = arr.length;
+        }
+        updatedCartQunt();
+    </script>
+</html>
