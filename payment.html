@@ -63,7 +63,7 @@
             .cart_div{
                 /* background-color: red; */
                 padding: 10px;
-                border: 1px solid gray;
+                border: 1px dotted gray;
                 margin-top:10px ;
                 gap: 10px 20px;
                 display: flex;
@@ -71,16 +71,18 @@
             }
             .card_detail_div{
                 display: flex;
-                justify-content: space-between;
+                width: 100%;
+                justify-content: space-around;
             }
 
-            .card_detail_div button{
-                padding: 5px 12px;
-                border: none;
+            .card_detail_div a{
+                /* padding: 5px 12px; */
+                text-decoration: underline;
+                font-weight: 700;
                 cursor: pointer;
-                background-color: rgb(211, 31, 208);
                 border-radius: 8px;
-                color: white;
+                color: rgb(236, 12, 202);
+                font-size: 20px;
             }
             .img_div img{
             width: 80px;
@@ -90,7 +92,7 @@
 
             .order-cart{
                 width: 50%;
-                border-left: 1px solid grey;
+                border-left: 1px dotted grey;
             }
             .container1{
                 width: 50%;
@@ -108,13 +110,54 @@
                 width: 70%;
                 display: block;
                 margin: auto;
-                background-color: rgb(238, 8, 196);
+                background-color: rgb(3, 129, 246);
                 border: none;
                 border-radius: 8px;
                 color: white;
                 font-weight: 600;
                 text-align: center;
                 cursor: pointer;
+            }
+
+            .desc{
+                font-weight: 600;
+                font-size: 16px;
+                opacity: .9;
+            }
+
+            .price, .detail{
+                font-size: 20px;
+                opacity: .8;
+                font-weight: 600;
+            }
+            .qty{
+                font-size: 17px;
+                font-weight: 700;
+                opacity: .7;
+            }
+
+            .delivery{
+                width: 80%;
+                margin:20px auto;
+
+
+            }
+            .delivery h1{
+                opacity: .6;
+            }
+            .del_cart{
+                padding: 10px;
+                margin-top: 10px;
+                border: 1px dotted grey;
+            }
+            .del_cart p{
+                padding-top: 5px;
+            }
+
+            .del_cart div{
+                display: flex;
+                padding-bottom: 5px;
+                justify-content: space-between;
             }
 
 
@@ -142,15 +185,31 @@
             </div>
         </nav>
 
-        <a href="#"> Continue Shoping </a>
+
         <div id="container">
-            <div id="container1"></div>
+
+            <div id="container1">
+                <a href="index.html" > Continue Shoping </a>
+
+            </div>
+
             <div class="order-cart">
+              <div class="delivery">
+                    <h1><i class="fa-solid fa-location-dot"></i> delivery Address</h1>
+                    <div class="del_cart">
+                        <div>
+                            <p>Sunil Kumar</p>
+                            <p><a href="#" style="color: rgb(235, 11, 235);font-weight: 800;">CHANGE</a></p>
+                        </div>
+                    <span>8209277800</span>
+                    <p>PHQ, Lal Kothi Scheme, Lal Kothi, Police Headquarters Marg, Jaipur, Jaipur District, Jaipur, Jaipur, Rajasthan - 302015</p>
+                    </div>
+                </div>
                 <div class="box"><h3>Price Details</h3> </div>
                 <div class="box"><p>Total Product Price</p><p id="total">+195</p></div>
                 <div class="box"><h2>order Total</h2> <p id="total1">130</p></div>
                 <div class="btnnn"><button id="cunti">Continue</button></div>
-            
+
 
             </div>
         </div>
@@ -174,21 +233,25 @@
                 img.src = item.image;
 
                 let desc = document.createElement("p")
+                desc.classList.add("desc")
                 desc.innerText = item.description.split(" ").slice(0, 5).join(" ") + " ....";
 
-                    let btn = document.createElement("button")
+                    let btn = document.createElement("a")
                 btn.innerText = "edit";
                 btn.addEventListener("click",()=>{
                     window.location.href = "./cart.html"
                 })
 
                 let price = document.createElement("p")
+                price.classList.add("price")
                 price.innerText = `$ : ${item.quantity*item.price}`
 
                 let detail = document.createElement("p")
+                detail.classList.add("detail")
                 detail.innerText = "All issue easy returns allowed"
 
                     let qty = document.createElement("p")
+                    qty.classList.add("qty")
                 qty.innerText = ` Size : Free size . Qty: ${item.quantity}`
 
                 img_div.append(img)
@@ -202,9 +265,10 @@
 
             let cunti = document.getElementById("cunti");
             cunti.addEventListener("click",()=>{
-                window.location.href = "./index.html";
+                window.location.href = "./order.html";
                 localStorage.clear()
                 alert("🎊🎊🎊🎊🎉🎉🎉🎉🎉")
+            
             })
 
 

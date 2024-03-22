@@ -6,48 +6,47 @@
         <title>Document</title>
         <!-- <link rel="stylesheet" href="style.css" /> -->
         <style>
-                    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-}
-nav {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 40px;
-    background-color: rgba(8, 96, 134, 0.814);
-}
-.logo {
-    font-size: 35px;
-    color: white;
-}
-.logo span:nth-child(1) {
-    color: rgb(238, 196, 9);
-}
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                text-decoration: none;
+            }
+            nav {
+                display: flex;
+                gap: 40px;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px 40px;
+                background-color: rgba(8, 96, 134, 0.814);
+            }
+            .logo {
+                font-size: 35px;
+                color: white;
+            }
+            .logo span:nth-child(1) {
+                color: rgb(238, 196, 9);
+            }
 
-.Search {
-    width: 45%;
-}
-.Search input {
-    width: 100%;
-    padding: 8px 12px;
-    border-radius: 5px;
-    border: none;
-}
+            .Search {
+                width: 45%;
+            }
+            .Search input {
+                width: 100%;
+                padding: 8px 12px;
+                border-radius: 5px;
+                border: none;
+            }
 
-.cart{
-    display: flex;
-    gap: 40px;
-    font-size: 20px;
-    cursor: pointer;
-
-}
-.cart a{
-    color: rgb(16, 15, 15);
-}
+            .cart {
+                display: flex;
+                gap: 40px;
+                font-size: 20px;
+                cursor: pointer;
+            }
+            .cart a {
+                color: rgb(16, 15, 15);
+            }
             .btnDiv {
                 display: flex;
                 border: none;
@@ -56,16 +55,16 @@ nav {
             }
 
             #container {
-                width: 95%;
+                width: 45%;
                 margin: 20px auto;
-                display: grid;
-                grid-template-columns: repeat(5, 1fr);
+                display: block;
                 gap: 40px;
             }
 
             #container .main_div {
-                padding: 20px;
+                padding: 10px;
                 box-shadow: 0px 0px 2px gray;
+                margin-top: 8px;
             }
             #container div p {
                 margin-top: 5px;
@@ -82,7 +81,7 @@ nav {
                 font-weight: bold;
             }
             #container div img {
-                width: 80%;
+                width: 5%;
                 aspect-ratio: 5/5;
             }
 
@@ -90,26 +89,42 @@ nav {
                 padding: 5px 0px;
             }
 
-    .checkBtn{
-    padding: 6px 10px;
-    margin-top: 20px;
-    float: right;
-    border: none;
-    background-color: rgb(9, 115, 181);
-    color: white;
-    cursor: pointer;
-}
-.btndiv1 button{
-    padding: 4px;
-    cursor: pointer;
 
-}
+            .btndiv1 button {
+                padding: 4px 10px;
+                margin-left: 2px;
+                cursor: pointer;
+            }
 
+            .check{
+                width: 45%;
+                padding: 25px 20px;
+                border: 1px dotted grey;
+                margin: auto;
+                text-align: end;
+            }
+            .check button{
+                padding: 10px 20px;
+                color: rgb(15, 15, 15);
+                border: none;
+                cursor: pointer;
+                font-weight: 800;
+                background-color: rgb(255, 179, 0);
+            }
 
+            .deletebtn{
+                    padding: 10px 20px;
+                color: rgb(255, 255, 255);
+                border: none;
+                cursor: pointer;
+                font-weight: 500;
+                border-radius: 5px;
+                background-color: rgb(245, 13, 13);
+            }
         </style>
     </head>
     <body>
-            <nav>
+        <nav>
             <div class="logo">
                 <span>e</span>
                 <span>S</span>
@@ -124,10 +139,15 @@ nav {
 
             <div class="cart">
                 <a href="#"><i class="fa-solid fa-user"></i></a>
-                <a href="./cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="./cart.html"
+                    ><i class="fa-solid fa-cart-shopping"></i
+                ></a>
             </div>
         </nav>
         <div id="container"></div>
+        <div class="check">
+            <button id="check">ChecKout</button>
+        </div>
     </body>
     <script>
         let arr = JSON.parse(localStorage.getItem("cartData")) || [];
@@ -135,13 +155,13 @@ nav {
         let container = document.getElementById("container");
 
         function showData(data) {
-            container.innerHTML =" "
-            data.map((item,index) => {
-                if(!item.quantity || item.quantity < 1  ){
-                    item.quantity=1
+            container.innerHTML = " ";
+            data.map((item, index) => {
+                if (!item.quantity || item.quantity < 1) {
+                    item.quantity = 1;
                 }
                 let div = document.createElement("div");
-                div.classList.add("main_div")
+                div.classList.add("main_div");
                 let img = document.createElement("img");
                 img.src = item.image;
                 let category = document.createElement("p");
@@ -153,72 +173,64 @@ nav {
                     ".......";
 
                 let price = document.createElement("h3");
-                price.innerText = ` $ : ${item.price*item.quantity}`;
+                price.innerText = ` $ : ${item.price * item.quantity}`;
 
                 let btndiv = document.createElement("div");
                 btndiv.classList.add("btnDiv");
                 let btndiv1 = document.createElement("div");
-                btndiv1.classList.add("btndiv1")
+                btndiv1.classList.add("btndiv1");
                 let btndiv2 = document.createElement("div");
 
                 let minusBtn = document.createElement("button");
                 minusBtn.innerText = "-";
-                minusBtn.addEventListener("click",()=>{
-                    if(item.quantity>1){
-                        item.quantity--
+                minusBtn.addEventListener("click", () => {
+                    if (item.quantity > 1) {
+                        item.quantity--;
                         qunatityBtn.innerText = item.quantity;
-                        showData(arr)
+                        showData(arr);
                     }
-                })
+                });
 
                 let qunatityBtn = document.createElement("button");
                 qunatityBtn.innerText = item.quantity;
 
-
                 let plusBtn = document.createElement("button");
                 plusBtn.innerText = "+";
-                    plusBtn.addEventListener("click",()=>{
-                        item.quantity++
-                        qunatityBtn.innerText = item.quantity;
-                        showData(arr)
-
-                })
+                plusBtn.addEventListener("click", () => {
+                    item.quantity++;
+                    qunatityBtn.innerText = item.quantity;
+                    showData(arr);
+                });
 
                 let delete1 = document.createElement("button");
                 delete1.innerText = "Delete";
-                delete1.addEventListener("click",()=>{
-                    delData(arr,index)
-                    showData(arr)
-                })
+                delete1.classList.add("deletebtn")
+                delete1.addEventListener("click", () => {
+                    delData(arr, index);
+                    showData(arr);
+                });
 
-                let checkbtn = document.createElement("button")
-                checkbtn.innerText = "checkout"
-                checkbtn.classList.add("checkBtn")
-                checkbtn.addEventListener("click",()=>{
-                    window.location.href = "./payment.html"
-                })
+
                 btndiv1.append(minusBtn, qunatityBtn, plusBtn);
                 btndiv2.append(delete1);
                 btndiv.append(btndiv1, btndiv2);
-                div.append(img, category, desc, price, btndiv ,checkbtn);
+                div.append(img, category, desc, price, btndiv);
                 container.append(div);
             });
             localStorage.setItem("cartData", JSON.stringify(arr));
-
         }
 
-
-
-
-
-        function delData(data,index){
-            data.splice( index, 1)
-            localStorage.setItem("cartData",JSON.stringify(data))
+        function delData(data, index) {
+            data.splice(index, 1);
+            localStorage.setItem("cartData", JSON.stringify(data));
             // showData(data)
         }
 
+
+        let check = document.getElementById("check");
+        check.addEventListener("click",()=>{
+            window.location.href = "./payment.html"
+        })
         showData(arr);
-
-
     </script>
 </html>
