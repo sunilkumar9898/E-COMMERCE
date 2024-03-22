@@ -47,6 +47,10 @@ nav {
     cursor: pointer;
 
 }
+#cart{
+    color: white;
+    margin-left: 5px;
+}
 .cart a{
     color: rgb(16, 15, 15);
 }
