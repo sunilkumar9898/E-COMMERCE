@@ -74,6 +74,16 @@ nav {
 
 }
 
+.prev{
+    /* border: 1px solid gray; */
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+.prev button{
+    padding: 5px 10px;
+}
 #container div p:nth-child(3){
     color: rgba(62, 61, 61, 0.522);
     font-size:16px;

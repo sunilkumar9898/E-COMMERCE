@@ -1,95 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amazone</title>
-    <link
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Amazone</title>
+        <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-    <style>
-        * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-}
-nav {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 40px;
-    background-color: rgba(8, 96, 134, 0.814);
-}
-.logo {
-    font-size: 35px;
-    color: white;
-}
-.logo span:nth-child(1) {
-    color: rgb(238, 196, 9);
-}
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                text-decoration: none;
+            }
+            nav {
+                display: flex;
+                gap: 40px;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px 40px;
+                background-color: rgba(8, 96, 134, 0.814);
+            }
+            .logo {
+                font-size: 35px;
+                color: white;
+            }
+            .logo span:nth-child(1) {
+                color: rgb(238, 196, 9);
+            }
 
-.Search {
-    width: 45%;
-}
-.Search input {
-    width: 100%;
-    padding: 8px 12px;
-    border-radius: 5px;
-    border: none;
-}
+            .Search {
+                width: 45%;
+            }
+            .Search input {
+                width: 100%;
+                padding: 8px 12px;
+                border-radius: 5px;
+                border: none;
+            }
 
-.cart{
-    display: flex;
-    gap: 40px;
-    font-size: 20px;
-    cursor: pointer;
+            .cart {
+                display: flex;
+                gap: 40px;
+                font-size: 20px;
+                cursor: pointer;
+            }
+            .cart a {
+                color: rgb(16, 15, 15);
+            }
 
-}
-.cart a{
-    color: rgb(16, 15, 15);
-}
-
-
-#container{
-    width: 80%;
-    margin: 50px auto;
-    box-shadow: 0px 0px 2px grey;
-    padding: 20px;
-}
-.main_div{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    gap: 40px;
-}
-
-.sub_section_div{
-    display: flex;
-    width: 40%;
-    margin-bottom:10px ;
-    align-items: center;
-    border-bottom: 1px solid grey;
-    padding: 10px;
-    gap: 40px;
-    justify-content: space-evenly;
-}
-.sub_section_div img{
-    width: 10%;
-    aspect-ratio: 2/2;
-}
-
-.sub_section_div button{
-    padding: 5px 10px;
-    width: 110px;
-}
+            #container {
+                width: 60%;
+                margin: 50px auto;
+                box-shadow: 0px 0px 2px grey;
+                padding: 20px;
+                display: flex;
+                gap: 50px;
 
 
-    </style>
-</head>
-<body>
+            }
+            .cart_div{
+                /* background-color: red; */
+                padding: 10px;
+                border: 1px solid gray;
+                margin-top:10px ;
+                gap: 10px 20px;
+                display: flex;
+                align-items: center;
+            }
+            .card_detail_div{
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .card_detail_div button{
+                padding: 5px 12px;
+                border: none;
+                cursor: pointer;
+                background-color: rgb(211, 31, 208);
+                border-radius: 8px;
+                color: white;
+            }
+            .img_div img{
+            width: 80px;
+            height: 40px;
+            margin-top: 0;
+            }
+
+            .order-cart{
+                width: 50%;
+                border-left: 1px solid grey;
+            }
+            .container1{
+                width: 50%;
+            }
+
+            .box{
+                display: flex;
+                gap: 20px 50px;
+                padding: 20px;
+                justify-content: space-around;
+            }
+
+            .btnnn button{
+                padding: 10px 15px;
+                width: 70%;
+                display: block;
+                margin: auto;
+                background-color: rgb(238, 8, 196);
+                border: none;
+                border-radius: 8px;
+                color: white;
+                font-weight: 600;
+                text-align: center;
+                cursor: pointer;
+            }
+
+
+        </style>
+    </head>
+    <body>
         <nav>
             <div class="logo">
                 <span>e</span>
@@ -105,60 +136,102 @@ nav {
 
             <div class="cart">
                 <a href="#"><i class="fa-solid fa-user"></i></a>
-                <a href="./cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="./cart.html"
+                    ><i class="fa-solid fa-cart-shopping"></i
+                ></a>
             </div>
         </nav>
 
-
+        <a href="#"> Continue Shoping </a>
         <div id="container">
-            <a href="#"> Continue Shoping </a>
+            <div id="container1"></div>
+            <div class="order-cart">
+                <div class="box"><h3>Price Details</h3> </div>
+                <div class="box"><p>Total Product Price</p><p id="total">+195</p></div>
+                <div class="box"><h2>order Total</h2> <p id="total1">130</p></div>
+                <div class="btnnn"><button id="cunti">Continue</button></div>
+            
+
+            </div>
         </div>
 
-
-
-
         <script>
-            let container = document.getElementById("container")
-            let arr = JSON.parse(localStorage.getItem("cartData")) || []
-            console.log(arr,"120");
+            let container1 = document.getElementById("container1");
+            let arr = JSON.parse(localStorage.getItem("cartData")) || [];
 
-        function displayData(data){
+
+            function displayData(data) {
             data.map((item)=>{
-                let div = document.createElement("div")
-                div.classList.add("main_div")
-                let section_div1 = document.createElement("div")
+                    let div = document.createElement("div");
+                div.classList.add("cart_div")
+                let img_div = document.createElement("div")
+                img_div.classList.add("img_div")
+                let details_div = document.createElement("div");
+                let card_detail_div = document.createElement("div");
+                card_detail_div.classList.add("card_detail_div")
 
-                let section_div2 = document.createElement("div")
-
-                let sub_section_div = document.createElement("div")
-                sub_section_div.classList.add("sub_section_div")
                 let img = document.createElement("img")
-                img.src = item.image
+                img.src = item.image;
 
                 let desc = document.createElement("p")
-                desc.innerText = item.description.split(" ").slice(0,7).join(" ")+ ".....";
+                desc.innerText = item.description.split(" ").slice(0, 5).join(" ") + " ....";
 
-                    let qunatity = document.createElement("p")
-                qunatity.innerText = ` Qty : ${item.quantity}`;
+                    let btn = document.createElement("button")
+                btn.innerText = "edit";
+                btn.addEventListener("click",()=>{
+                    window.location.href = "./cart.html"
+                })
 
-                        let total = document.createElement("p")
-                total.innerText ="total";
+                let price = document.createElement("p")
+                price.innerText = `$ : ${item.quantity*item.price}`
 
-                        let btn = document.createElement("button")
-                btn.innerText = "edit Cart";
+                let detail = document.createElement("p")
+                detail.innerText = "All issue easy returns allowed"
 
-                sub_section_div.append(img,desc,qunatity,btn)
-                section_div1.append(sub_section_div)
-                section_div2.append(total)
-                div.append(section_div1,section_div2)
-                container.append(div)
+                    let qty = document.createElement("p")
+                qty.innerText = ` Size : Free size . Qty: ${item.quantity}`
 
-
+                img_div.append(img)
+                card_detail_div.append(desc,btn);
+                details_div.append(card_detail_div,price,detail,qty)
+                div.append(img_div,details_div)
+                container1.append(div)
             })
 
-        }
+            }
 
-        displayData(arr)
+            let cunti = document.getElementById("cunti");
+            cunti.addEventListener("click",()=>{
+                window.location.href = "./index.html";
+                localStorage.clear()
+                alert("🎊🎊🎊🎊🎉🎉🎉🎉🎉")
+            })
+
+
+            displayData(arr)
+
+
+
+
+
+
+
+        let total = document.getElementById("total");
+        let sum = 0;
+        for (let i = 0; i < arr.length; i++) {
+            sum = sum + arr[i].price * arr[i].quantity;
+        }
+        total.innerText = `total Amount $ ${sum}`;
+
+
+        let total1 = document.getElementById("total1");
+        let sum1 = 0;
+        for (let i = 0; i < arr.length; i++) {
+            sum1 = sum1 + arr[i].price * arr[i].quantity;
+        }
+        total1.innerText = `total $ ${sum1}`;
+
+
         </script>
-</body>
+    </body>
 </html>
