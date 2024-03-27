@@ -39,6 +39,10 @@
                 background-color: rgb(0, 102, 255);
                 color: white;
             }
+            .btn:hover{
+                background-color:rgb(61, 59, 59) ;
+                color: white;
+            }
 
             /* Media queries for responsiveness */
             @media screen and (max-width: 768px) {
@@ -58,7 +62,7 @@
     </head>
     <body>
 
-            <div class="main-navbar shadow-sm sticky-top">
+<div class="main-navbar shadow-sm sticky-top">
         <div class="top-navbar">
             <div class="container-fluid">
                 <div class="row">
@@ -193,13 +197,13 @@
             function displayData(data) {
                 data.map((item) => {
                     let div = document.createElement("div");
-                    let brand = document.createElement("h4");
+                    let brand = document.createElement("h5");
                     brand.innerText = item.brand;
 
-                    let category = document.createElement("h4");
+                    let category = document.createElement("h5");
                     category.innerText = item.category;
 
-                    let discount = document.createElement("h4");
+                    let discount = document.createElement("h5");
                     discount.innerText = item.discountPercentage;
 
                     let description = document.createElement("h4");
@@ -207,10 +211,10 @@
                         item.description.split(" ").slice(0, 2).join(" ") +
                         " ............";
 
-                    let price = document.createElement("h4");
+                    let price = document.createElement("h6");
                     price.innerText = item.price;
 
-                    let title = document.createElement("h4");
+                    let title = document.createElement("h6");
                     title.innerText = item.title;
                     let img = document.createElement("img");
                     img.src = item.images[0];
