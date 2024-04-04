@@ -24,6 +24,7 @@
 
             #container div {
                 display: flex;
+                flex-wrap: wrap;
                 border: 1px dotted grey;
                 width: 100%;
                 align-items: center;
@@ -41,6 +42,7 @@
             }
             .qtyDiv {
                 display: flex;
+                flex-wrap: wrap;
                 border: 1px solid rgba(128, 128, 128, 0.47);
                 justify-content: space-around;
             }
@@ -58,11 +60,14 @@
                 width: 80%;
                 justify-content: space-between;
                 display: flex;
+                flex-wrap: wrap;
                 margin: 20px auto;
+                gap: 40px;
             }
 
             .amount_card {
                 display: flex;
+
                 gap: 120px;
                 justify-content: space-between;
             }
@@ -112,6 +117,30 @@
 
             .desc1{
                 width: 25%;
+            }
+
+                    /* Media queries for responsiveness */
+            @media screen and (max-width: 768px) {
+                #container div {
+                    width: 100%;
+                     /* Each div occupies 40% of the container width on screens up to 768px wide */
+                }
+                .description{
+                    display: none;
+                }
+            }
+
+            @media screen and (max-width: 480px) {
+                #container div {
+                    width: 100%; /* Each div occupies 100% of the container width on screens up to 480px wide */
+                }
+                #card_total{
+                    width: 75%;
+                    margin: auto;
+                }
+                .description{
+                    display: none;
+                }
             }
         </style>
     </head>
@@ -325,6 +354,7 @@
                     title.innerText = item.title;
 
                     let description  = document.createElement("P")
+                    description.classList.add("description")
                     description = item.description.split(" ").slice(0, 7).join(" ") +
                         " ...";
 

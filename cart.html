@@ -89,21 +89,23 @@
                 padding: 5px 0px;
             }
 
-
             .btndiv1 button {
                 padding: 4px 10px;
                 margin-left: 2px;
                 cursor: pointer;
             }
 
-            .check{
+            .check {
                 width: 45%;
                 padding: 25px 20px;
                 border: 1px dotted grey;
                 margin: auto;
-                text-align: end;
+                display: flex;
+                justify-content: end;
+
+
             }
-            .check button{
+            .check button {
                 padding: 10px 20px;
                 color: rgb(15, 15, 15);
                 border: none;
@@ -112,14 +114,29 @@
                 background-color: rgb(255, 179, 0);
             }
 
-            .deletebtn{
-                    padding: 10px 20px;
+            .deletebtn {
+                padding: 10px 20px;
                 color: rgb(255, 255, 255);
                 border: none;
                 cursor: pointer;
                 font-weight: 500;
                 border-radius: 5px;
                 background-color: rgb(245, 13, 13);
+            }
+
+            #emptyCartMsg {
+                text-align: center;
+                font-size: 25px;
+                font-weight: 700;
+                margin: auto;
+                margin-top: 400px;
+            }
+            .link{
+                padding: 20px;
+                font-size: 20px;
+                text-decoration: underline;
+                font-weight: 700;
+                color: blue;
             }
         </style>
     </head>
@@ -144,81 +161,93 @@
                 ></a>
             </div>
         </nav>
+        <div class="link"><a href="index.html">Home Page</a></div>
         <div id="container"></div>
+        <div id="emptyCartMsg" style="display: none">Your cart is empty</div>
         <div class="check">
             <button id="check">ChecKout</button>
         </div>
     </body>
     <script>
         let arr = JSON.parse(localStorage.getItem("cartData")) || [];
-
+        let emptyCartMsg = document.getElementById("emptyCartMsg");
         let container = document.getElementById("container");
+        let check = document.getElementById("check");
 
         function showData(data) {
             container.innerHTML = " ";
-            data.map((item, index) => {
-                if (!item.quantity || item.quantity < 1) {
-                    item.quantity = 1;
-                }
-                let div = document.createElement("div");
-                div.classList.add("main_div");
-                let img = document.createElement("img");
-                img.src = item.image;
-                let category = document.createElement("p");
-                category.innerText = item.category;
+            if (data.length === 0) {
+                emptyCartMsg.style.display = "block";
+                check.style.display = "none";
+            } else {
+                emptyCartMsg.style.display = "none";
+                check.style.display = "block";
 
-                let desc = document.createElement("p");
-                desc.innerText =
-                    item.description.split(" ").slice(0, 7).join(" ") +
-                    ".......";
+                data.map((item, index) => {
+                    if (!item.quantity || item.quantity < 1) {
+                        item.quantity = 1;
+                    }
+                    let div = document.createElement("div");
+                    div.classList.add("main_div");
+                    let img = document.createElement("img");
+                    img.src = item.image;
+                    let category = document.createElement("p");
+                    category.innerText = item.category;
 
-                let price = document.createElement("h3");
-                price.innerText = ` $ : ${item.price * item.quantity}`;
+                    let desc = document.createElement("p");
+                    desc.innerText =
+                        item.description.split(" ").slice(0, 7).join(" ") +
+                        ".......";
 
-                let btndiv = document.createElement("div");
-                btndiv.classList.add("btnDiv");
-                let btndiv1 = document.createElement("div");
-                btndiv1.classList.add("btndiv1");
-                let btndiv2 = document.createElement("div");
+                    let price = document.createElement("h3");
+                    price.innerText = ` $ : ${item.price * item.quantity}`;
 
-                let minusBtn = document.createElement("button");
-                minusBtn.innerText = "-";
-                minusBtn.addEventListener("click", () => {
-                    if (item.quantity > 1) {
-                        item.quantity--;
+                    let btndiv = document.createElement("div");
+                    btndiv.classList.add("btnDiv");
+                    let btndiv1 = document.createElement("div");
+                    btndiv1.classList.add("btndiv1");
+                    let btndiv2 = document.createElement("div");
+
+                    let minusBtn = document.createElement("button");
+                    minusBtn.innerText = "-";
+                    minusBtn.addEventListener("click", () => {
+                        if (item.quantity > 1) {
+                            item.quantity--;
+                            qunatityBtn.innerText = item.quantity;
+                            showData(arr);
+                        }
+                    });
+
+                    let qunatityBtn = document.createElement("button");
+                    qunatityBtn.innerText = item.quantity;
+
+                    let plusBtn = document.createElement("button");
+                    plusBtn.innerText = "+";
+                    plusBtn.addEventListener("click", () => {
+                        item.quantity++;
                         qunatityBtn.innerText = item.quantity;
                         showData(arr);
-                    }
+                    });
+
+                    let delete1 = document.createElement("button");
+                    delete1.innerText = "Delete";
+                    delete1.classList.add("deletebtn");
+                    delete1.addEventListener("click", () => {
+                        delData(arr, index);
+                        showData(arr);
+                    });
+
+                    btndiv1.append(minusBtn, qunatityBtn, plusBtn);
+                    btndiv2.append(delete1);
+                    btndiv.append(btndiv1, btndiv2);
+                    div.append(img, category, desc, price, btndiv);
+                    container.append(div);
                 });
-
-                let qunatityBtn = document.createElement("button");
-                qunatityBtn.innerText = item.quantity;
-
-                let plusBtn = document.createElement("button");
-                plusBtn.innerText = "+";
-                plusBtn.addEventListener("click", () => {
-                    item.quantity++;
-                    qunatityBtn.innerText = item.quantity;
-                    showData(arr);
-                });
-
-                let delete1 = document.createElement("button");
-                delete1.innerText = "Delete";
-                delete1.classList.add("deletebtn")
-                delete1.addEventListener("click", () => {
-                    delData(arr, index);
-                    showData(arr);
-                });
-
-
-                btndiv1.append(minusBtn, qunatityBtn, plusBtn);
-                btndiv2.append(delete1);
-                btndiv.append(btndiv1, btndiv2);
-                div.append(img, category, desc, price, btndiv);
-                container.append(div);
-            });
-            localStorage.setItem("cartData", JSON.stringify(arr));
+                localStorage.setItem("cartData", JSON.stringify(arr));
+            }
         }
+
+        showData(arr);
 
         function delData(data, index) {
             data.splice(index, 1);
@@ -226,11 +255,8 @@
             // showData(data)
         }
 
-
-        let check = document.getElementById("check");
-        check.addEventListener("click",()=>{
-            window.location.href = "./payment.html"
-        })
-        showData(arr);
+        check.addEventListener("click", () => {
+            window.location.href = "./payment.html";
+        });
     </script>
 </html>
